@@ -110,6 +110,42 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            #title {
+                font-size: 1.2em;
+                padding: 10px 0;
+            }
+            #show-images {
+                margin: 15px auto; /* Center the button on mobile */
+                align-self: center; /* Center in flex container */
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            #map-container {
+                height: 50vh; /* Reduce map height on mobile */
+            }
+            .modal-content {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                width: 95%;
+            }
+            #modal-images-container img {
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #title {
+                font-size: 1em;
+            }
+            .modal-content {
+                grid-template-columns: 1fr; /* Single column on very small screens */
+            }
+            #modal-images-container img {
+                height: 180px;
+            }
+        }
     </style>
 </head>
 <body>

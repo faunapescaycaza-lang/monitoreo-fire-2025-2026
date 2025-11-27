@@ -111,6 +111,25 @@
             cursor: pointer;
         }
 
+        #back-to-map-btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #6c757d; /* A gray color for a secondary action */
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            margin-top: 20px; /* Space from images */
+            margin-bottom: 20px; /* Space from bottom of modal */
+        }
+        #back-to-map-btn:hover {
+            background-color: #5a6268;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
         /* Responsive styles */
         @media (max-width: 768px) {
             #title {
@@ -132,6 +151,10 @@
             }
             #modal-images-container img {
                 height: 120px;
+            }
+            #back-to-map-btn {
+                font-size: 14px;
+                padding: 10px 20px;
             }
         }
 
@@ -162,6 +185,7 @@
     <div id="myModal" class="modal">
       <span class="close">&times;</span>
       <div class="modal-content" id="modal-images-container"></div> <!-- Renamed ID for clarity -->
+      <button id="back-to-map-btn">Volver al Mapa</button>
     </div>
 
     <script>
@@ -169,6 +193,7 @@
         const btn = document.getElementById('show-images');
         const span = document.getElementsByClassName('close')[0];
         const modalImagesContainer = document.getElementById('modal-images-container'); // Renamed
+        const backToMapBtn = document.getElementById('back-to-map-btn');
 
         const images = [
             'Imagenes_26_11_2025/55bd8871-8f9b-48c2-9aa5-a71651f6423b.jpg',
@@ -196,6 +221,10 @@
         }
 
         span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        backToMapBtn.onclick = function() {
             modal.style.display = "none";
         }
 

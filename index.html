@@ -29,12 +29,11 @@
             padding: 10px 20px;
             display: flex;
             justify-content: flex-start;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            flex-shrink: 0;
+            flex-wrap: wrap;
         }
-        #show-images, #show-video, #show-images-28-11 {
-            padding: 8px 18px; /* Slightly adjusted padding for the new style */
-            font-size: 14px; /* Slightly smaller font for a cleaner look */
+        .button-bar button {
+            padding: 8px 18px;
+            font-size: 14px;
             font-weight: bold;
             color: #f8f9fa;
             background-color: transparent;
@@ -42,11 +41,9 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin: 5px;
         }
-        #show-video, #show-images-28-11 {
-            margin-left: 10px;
-        }
-        #show-images:hover, #show-video:hover, #show-images-28-11:hover {
+        .button-bar button:hover {
             background-color: #f8f9fa;
             color: #343a40;
         }
@@ -73,7 +70,7 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0,0,0,0.9);
-            flex-direction: column; /* To stack content and buttons */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -114,17 +111,30 @@
         }
 
         /* Video Modal Content */
-        #video-container {
+        .video-container {
             width: 90%;
-            max-width: 900px;
+            max-width: 1200px;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-        #video-player {
+        .video-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .video-wrapper video {
             width: 100%;
+            max-width: 450px;
             max-height: 80vh;
             border-radius: 5px;
+        }
+        .video-wrapper p {
+            color: white;
+            margin-top: 10px;
+            font-size: 1.2em;
         }
 
         /* Single Image View */
@@ -172,41 +182,13 @@
             border-color: #f8f9fa;
         }
 
-        /* Responsive styles */
         @media (max-width: 768px) {
-            #title {
-                font-size: 1.2em;
-                padding: 10px 0;
-            }
-            #show-images, #show-video, #show-images-28-11 {
-                margin: 5px; /* Adjust margin for stacking */
-                align-self: center;
-            }
             .button-bar {
-                flex-wrap: wrap;
                 justify-content: center;
             }
             .modal-content {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 width: 95%;
-            }
-            .modal-content img {
-                height: 120px;
-            }
-            .back-to-map-btn {
-                font-size: 14px;
-                padding: 10px 20px;
-            }
-        }
-        @media (max-width: 480px) {
-            #title {
-                font-size: 1em;
-            }
-            .modal-content {
-                grid-template-columns: 1fr;
-            }
-            .modal-content img {
-                height: 180px;
             }
         }
     </style>
@@ -217,7 +199,8 @@
     <div class="button-bar">
         <button id="show-images">Incendios 26/11/2025</button>
         <button id="show-video">Incendios 27/11/2025</button>
-        <button id="show-images-28-11">Incendios 28/11/2025</button>
+        <button id="show-images-28-11">Imagenes 28/11/2025</button>
+        <button id="show-videos-28-11">Videos 28/11/2025</button>
     </div>
 
     <div id="map-container">
@@ -227,36 +210,60 @@
 
     <!-- The Image Modal (26/11) -->
     <div id="myModal" class="modal">
-      <span class="close image-close">&times;</span>
-      <div class="modal-content" id="modal-images-container"></div>
-      <div class="single-image-view" id="single-image-view">
-        <img class="single-image" id="single-image" src="" alt="Imagen ampliada">
-        <button class="back-to-grid-btn" id="back-to-grid-btn">Volver a la galería</button>
+      <span class="close">&times;</span>
+      <div class="modal-content"></div>
+      <div class="single-image-view">
+        <img class="single-image" src="" alt="Imagen ampliada">
+        <button class="back-to-grid-btn">Volver a la galería</button>
       </div>
-      <button class="back-to-map-btn" id="back-to-map-btn">Volver al Mapa</button>
+      <button class="back-to-map-btn">Volver al Mapa</button>
     </div>
 
     <!-- The Video Modal (27/11) -->
     <div id="videoModal" class="modal">
-      <span class="close video-close">&times;</span>
-      <div id="video-container">
-        <video id="video-player" controls>
-            <source src="videos/Fire_nqn_27_11_09_30_am.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+      <span class="close">&times;</span>
+      <div class="video-container">
+        <div class="video-wrapper">
+            <video controls>
+                <source src="videos/Fire_nqn_27_11_09_30_am.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
       </div>
-      <button class="back-to-map-btn" id="video-back-to-map-btn">Volver al Mapa</button>
+      <button class="back-to-map-btn">Volver al Mapa</button>
     </div>
 
     <!-- The Image Modal (28/11) -->
     <div id="modal-28-11" class="modal">
-      <span class="close close-28-11">&times;</span>
-      <div class="modal-content" id="modal-images-container-28-11"></div>
-      <div class="single-image-view" id="single-image-view-28-11">
-        <img class="single-image" id="single-image-28-11" src="" alt="Imagen ampliada">
-        <button class="back-to-grid-btn" id="back-to-grid-btn-28-11">Volver a la galería</button>
+      <span class="close">&times;</span>
+      <div class="modal-content"></div>
+      <div class="single-image-view">
+        <img class="single-image" src="" alt="Imagen ampliada">
+        <button class="back-to-grid-btn">Volver a la galería</button>
       </div>
-      <button class="back-to-map-btn" id="back-to-map-btn-28-11">Volver al Mapa</button>
+      <button class="back-to-map-btn">Volver al Mapa</button>
+    </div>
+
+    <!-- The Video Modal (28/11) -->
+    <div id="videoModal-28-11" class="modal">
+      <span class="close">&times;</span>
+      <div class="video-container">
+        <div class="video-wrapper">
+          <p>ver video viento</p>
+          <video controls>
+            <source src="videos/Grabación de pantalla 2025-11-28 093514.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-wrapper">
+          <p>ver video viento</p>
+          <video controls>
+            <source src="videos/Grabación de pantalla 2025-11-28 093558.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <button class="back-to-map-btn">Volver al Mapa</button>
     </div>
 
     <script>
@@ -292,7 +299,7 @@
                 fullImagePaths.forEach(src => {
                     const img = document.createElement('img');
                     img.src = src;
-                    img.alt = src.split('/').pop(); // Use filename for alt text
+                    img.alt = src.split('/').pop();
                     img.onclick = () => showSingleImageView(src);
                     imagesContainer.appendChild(img);
                 });
@@ -309,7 +316,32 @@
             if (backToGridBtn) backToGridBtn.onclick = showGridView;
         }
 
-        // --- Setup for Image Modal 26/11 ---
+        // --- Generic Video Modal Logic ---
+        function setupVideoModal(modalId, buttonId) {
+            const modal = document.getElementById(modalId);
+            const showBtn = document.getElementById(buttonId);
+            const closeSpan = modal.querySelector('.close');
+            const backToMapBtn = modal.querySelector('.back-to-map-btn');
+            const videos = modal.querySelectorAll('video');
+
+            function openModal() {
+                modal.style.display = "flex";
+            }
+
+            function closeModal() {
+                modal.style.display = "none";
+                videos.forEach(video => {
+                    video.pause();
+                    video.currentTime = 0;
+                });
+            }
+
+            showBtn.onclick = openModal;
+            closeSpan.onclick = closeModal;
+            if (backToMapBtn) backToMapBtn.onclick = closeModal;
+        }
+
+        // --- Setup Modals ---
         const images_26_11 = [
             '55bd8871-8f9b-48c2-9aa5-a71651f6423b.jpg', '6ba30875-6fb6-487b-b8af-5bc9afc9c66b.jpg',
             '78a32b75-21d9-44c4-a4a1-7d137ac4e8cf (1).jpg', '78a32b75-21d9-44c4-a4a1-7d137ac4e8cf.jpg',
@@ -319,7 +351,6 @@
         ];
         setupImageModal('myModal', 'show-images', images_26_11, 'Imagenes_26_11_2025');
 
-        // --- Setup for Image Modal 28/11 ---
         const images_28_11 = [
             'Captura de pantalla 2025-11-28 092525.png', 'Captura de pantalla 2025-11-28 092551.png',
             'Captura de pantalla 2025-11-28 092601.png', 'Captura de pantalla 2025-11-28 092738.png',
@@ -327,36 +358,17 @@
         ];
         setupImageModal('modal-28-11', 'show-images-28-11', images_28_11, 'fire_28_11');
 
-
-        // --- Video Modal Logic ---
-        const videoModal = document.getElementById('videoModal');
-        const showVideoButton = document.getElementById('show-video');
-        const closeVideoSpan = videoModal.querySelector('.close');
-        const videoPlayer = document.getElementById('video-player');
-        const videoBackToMapBtn = document.getElementById('video-back-to-map-btn');
-
-        showVideoButton.onclick = function() {
-            videoModal.style.display = "flex";
-            videoPlayer.play();
-        }
-
-        function closeVideoModal() {
-            videoModal.style.display = "none";
-            videoPlayer.pause();
-            videoPlayer.currentTime = 0; // Reset video to start
-        }
-
-        closeVideoSpan.onclick = closeVideoModal;
-        videoBackToMapBtn.onclick = closeVideoModal;
+        setupVideoModal('videoModal', 'show-video');
+        setupVideoModal('videoModal-28-11', 'show-videos-28-11');
 
         // --- General Modal Closing Logic ---
         window.addEventListener('click', function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
-                if (event.target.id === 'videoModal') {
-                    videoPlayer.pause();
-                    videoPlayer.currentTime = 0;
-                }
+                event.target.querySelectorAll('video').forEach(video => {
+                    video.pause();
+                    video.currentTime = 0;
+                });
             }
         });
     </script>

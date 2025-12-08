@@ -107,6 +107,15 @@ setupImageModal('modal-reporte-1200', 'show-reporte-1200', reporte_1200_image, '
 setupVideoModal('videoModal', 'show-video');
 setupVideoModal('videoModal-28-11', 'show-videos-28-11');
 
+const images_07_12 = [
+    'Captura de pantalla 2025-12-08 123543.png', 'Captura de pantalla 2025-12-08 123551.png',
+    'Captura de pantalla 2025-12-08 123602.png', 'Captura de pantalla 2025-12-08 123610.png',
+    'Captura de pantalla 2025-12-08 123624.png', 'Captura de pantalla 2025-12-08 123635.png',
+    'Captura de pantalla 2025-12-08 123948.png', 'Captura de pantalla 2025-12-08 124012.png',
+    'Captura de pantalla 2025-12-08 124032.png'
+];
+setupImageModal('modal-07-12', 'show-map-and-images-07-12', images_07_12, 'static/Fire_07_12_2025');
+
 
 // --- Dropdown Logic ---
 document.querySelector('.dropbtn').addEventListener('click', function(event) {

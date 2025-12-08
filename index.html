@@ -22,6 +22,7 @@
                 <button id="show-reporte-1200">Reporte 12:00 hs</button>
             </div>
         </div>
+        <button id="show-map-and-images-07-12">Ultimo Incendio: 07/12/2025</button>
     </div>
 
     <div id="map-container">
@@ -97,6 +98,23 @@
       </div>
       <button class="back-to-map-btn">Volver al Mapa</button>
     </div>
+
+    <!-- The Image and Map Modal (07/12) -->
+    <div id="modal-07-12" class="modal">
+      <span class="close">&times;</span>
+      <div class="modal-scroll-content">
+        <div class="modal-content"></div>
+        <div id="map-container-07-12" class="map-container-modal">
+          <iframe src="https://www.google.com/maps/d/embed?mid=1iG_oOaW4zHAyE1IIhZgoOX505jPvh4U&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+        </div>
+      </div>
+      <div class="single-image-view">
+        <img class="single-image" src="" alt="Imagen ampliada">
+        <button class="back-to-grid-btn">Volver a la galería</button>
+      </div>
+      <button class="back-to-map-btn">Cerrar</button>
+    </div>
+
 
     <script src="static/js/main.js"></script>
 </body>

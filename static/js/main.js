@@ -14,7 +14,7 @@ function setupImageModal(modalId, buttonId, imageArray, folder) {
     const modal = document.getElementById(modalId);
     const showBtn = document.getElementById(buttonId);
     const closeSpan = modal.querySelector('.close');
-    const imagesContainer = modal.querySelector('.modal-content');
+    const imagesContainer = modal.querySelector('.image-gallery');
     const backToMapBtn = modal.querySelector('.back-to-map-btn');
 
     const singleImageView = modal.querySelector('.single-image-view');
@@ -24,25 +24,30 @@ function setupImageModal(modalId, buttonId, imageArray, folder) {
     const fullImagePaths = imageArray.map(img => `${folder}/${img}`);
 
     function showGridView() {
-        singleImageView.style.display = 'none';
-        imagesContainer.style.display = 'grid';
+        if(singleImageView) singleImageView.style.display = 'none';
+        if(imagesContainer) imagesContainer.style.display = 'grid';
         if (backToMapBtn) backToMapBtn.style.display = 'block';
     }
 
     function showSingleImageView(src) {
-        imagesContainer.style.display = 'none';
-        singleImage.src = src;
-        singleImageView.style.display = 'flex';
+        if(imagesContainer) imagesContainer.style.display = 'none';
+        if(singleImage) singleImage.src = src;
+        if(singleImageView) singleImageView.style.display = 'flex';
         if (backToMapBtn) backToMapBtn.style.display = 'none';
     }
 
+    if (!showBtn) return; // Exit if button doesn't exist
+
     showBtn.onclick = function() {
+        if (!imagesContainer) return; // Exit if no gallery container in this modal
+        
         imagesContainer.innerHTML = ''; // Clear previous images
         fullImagePaths.forEach(src => {
             const img = document.createElement('img');
             img.src = src;
             img.alt = src.split('/').pop();
             img.onclick = () => showSingleImageView(src);
+
             imagesContainer.appendChild(img);
         });
         showGridView();
@@ -53,7 +58,7 @@ function setupImageModal(modalId, buttonId, imageArray, folder) {
         modal.style.display = "none";
     }
 
-    closeSpan.onclick = closeModal;
+    if(closeSpan) closeSpan.onclick = closeModal;
     if (backToMapBtn) backToMapBtn.onclick = closeModal;
     if (backToGridBtn) backToGridBtn.onclick = showGridView;
 }
@@ -117,25 +122,8 @@ const images_07_12 = [
 setupImageModal('modal-07-12', 'show-map-and-images-07-12', images_07_12, 'static/Fire_07_12_2025');
 
 
-// --- Dropdown Logic ---
-document.querySelector('.dropbtn').addEventListener('click', function(event) {
-    document.querySelector('.dropdown-content').classList.toggle("show");
-    event.stopPropagation();
-});
-
 // --- General Click Handling ---
 window.addEventListener('click', function(event) {
-    // Close dropdown if click is outside
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-
     // Close modal if click is on the background
     if (event.target.classList.contains('modal')) {
         event.target.style.display = "none";

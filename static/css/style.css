@@ -58,65 +58,18 @@ body, html {
             color: #fff;
             background-color: #333;
             text-decoration: none;
-        }
-        #title {
-            background-color: #343a40;
-            color: white;
-            padding: 15px 0;
-            width: 100%;
-            font-size: 1.8em;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            z-index: 10;
-            flex-shrink: 0;
-        }
-        .button-bar {
-            background-color: #343a40;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-        }
-        .button-bar button {
-            padding: 8px 18px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #f8f9fa;
-            background-color: transparent;
-            border: 2px solid #f8f9fa;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 5px;
-        }
-        .button-bar button:hover {
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
-
-        /* Specific style for the "Ultimo Incendio" button */
-        #show-map-and-images-07-12 {
-            background-color: #dc3545; /* A shade of red */
-            border-color: #dc3545;
-            color: white;
-        }
-
-        #show-map-and-images-07-12:hover {
-            background-color: #c82333; /* Darker red on hover */
-            border-color: #c82333;
-            color: white;
-        }
-        #map-container {
-            width: 100%;
-            flex-grow: 1;
-            margin: 0;
-            display: flex;
-        }
-        #map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+                }
+                #map-container {
+                    width: 100%;
+                    flex-grow: 1;
+                    margin: 0;
+                    display: flex;
+                }
+                #map-container iframe {
+                    width: 100%;
+                    height: 100%;
+                    border: 0;
+                }
 
         /* Modal styles */
         .modal {
@@ -130,28 +83,9 @@ body, html {
             overflow: auto;
             background-color: rgba(0,0,0,0.9);
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-        }
-        .modal-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            width: 90%;
-            max-width: 1200px;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .modal-content img {
-            width: 100%;
-            aspect-ratio: 1/1; /* Make images square, adjust as needed */
-            object-fit: cover;
-            border-radius: 5px;
-            transition: transform 0.2s ease-in-out;
-            cursor: pointer;
-        }
-        .modal-content img:hover {
-            transform: scale(1.05);
+            justify-content: flex-start; /* Align content to the top */
+            padding-top: 5vh; /* Add some space at the top */
         }
         .close { /* Generic close button style for modals */
             position: absolute;
@@ -169,15 +103,23 @@ body, html {
             text-decoration: none;
         }
 
-        /* New class for scrollable modal content */
-        .modal-scroll-content {
+        /* Styling for the new titles container */
+        .modal-titles {
+            text-align: center;
             width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            /* For centering the content inside */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 0 20px;
+            margin-bottom: 10px;
+        }
+        .modal-titles h2,
+        .modal-titles h4 {
+            color: white;
+            margin: 5px 0;
+        }
+        .modal-titles h2 {
+            font-size: 2em;
+        }
+        .modal-titles h4 {
+            font-size: 1.2em;
         }
 
         /* Video Modal Content */
@@ -252,75 +194,40 @@ body, html {
             border-color: #f8f9fa;
         }
 
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 100px); /* Use auto-fit with fixed size for centering */
+            gap: 15px;
+            width: 90%; /* Keep container width */
+            max-width: 1200px;
+            padding: 20px;
+            justify-content: center; /* Center the grid items */
+        }
+        .image-gallery img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.15); /* More zoom on hover */
+        }
+
         @media (max-width: 768px) {
             .button-bar {
                 justify-content: center;
             }
-            .modal-content {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                width: 95%;
-            }
-        }
-        /* Dropdown Button */
-        .dropbtn {
-            padding: 8px 18px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #f8f9fa;
-            background-color: transparent;
-            border: 2px solid #f8f9fa;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 5px;
-        }
-
-        .dropbtn:hover, .dropbtn:focus {
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content button {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: none;
-            border: none;
-        }
-
-        .dropdown-content button:hover {
-            background-color: #ddd;
-        }
-
-        .show {
-            display: block;
         }
 
         /* Styling for the new map container within the modal */
         .map-container-modal {
-            width: 100%; /* Occupy full width */
-            max-width: 1200px; /* Still respect max-width for very large screens if needed */
-            max-height: 60vh; /* Make it taller */
-            aspect-ratio: 4/3; /* Maintain a taller aspect ratio */
+            width: 90%; /* Match the gallery width */
+            max-width: 1200px;
+            max-height: 75vh;
+            aspect-ratio: 4/3;
             margin-top: 20px;
-            background-color: #f1f1f1;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }

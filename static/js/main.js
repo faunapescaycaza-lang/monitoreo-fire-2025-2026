@@ -121,6 +121,9 @@ const images_07_12 = [
 ];
 setupImageModal('modal-07-12', 'show-map-and-images-07-12', images_07_12, 'static/Fire_07_12_2025');
 
+const images_08_12 = ['1.png', '2.png'];
+setupImageModal('modal-08-12', 'show-map-and-images-08-12', images_08_12, 'static/Fire_08_12_2025');
+
 
 // --- General Click Handling ---
 window.addEventListener('click', function(event) {
